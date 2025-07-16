@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { getPlayer } from "./controllers/players-controller";
 
-const router = Router();
+const routes = Router();
 
-router.get("/", getPlayer);
+routes.get("/players", getPlayer);
 
-export { router };
+export { routes };
