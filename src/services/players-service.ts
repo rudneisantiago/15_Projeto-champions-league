@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
 import {
+  deleteOnePlayer,
   findAllPlayers,
   findPlayerById,
   insertPlayer,
@@ -34,4 +34,10 @@ export const createPlayerService = async (player: PlayerModel) => {
 
   await insertPlayer(player);
   return await created();
+};
+
+export const deletePlayerService = async (id: number) => {
+  await deleteOnePlayer(id);
+
+  return ok({ message: "Player deleted" });
 };
