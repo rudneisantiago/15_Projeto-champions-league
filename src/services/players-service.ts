@@ -2,8 +2,10 @@ import { Request, Response } from "express";
 import {
   findAllPlayers,
   findPlayerById,
+  insertPlayer,
 } from "../repositories/player-repository";
-import { ok, noContent } from "../utils/http-helper";
+import { ok, noContent, badRequest, created } from "../utils/http-helper";
+import { PlayerModel } from "../models/player-model";
 
 export const getPlayerService = async () => {
   const data = await findAllPlayers();
@@ -23,4 +25,13 @@ export const getPlayerByIdService = async (id: number) => {
   }
 
   return await noContent();
+};
+
+export const createPlayerService = async (player: PlayerModel) => {
+  if (Object.keys(player).length === 0) {
+    return await badRequest();
+  }
+
+  await insertPlayer(player);
+  return await created();
 };

@@ -15,6 +15,22 @@ export const ok = async (data: any): Promise<HttpResponse> => {
 export const noContent = async (): Promise<HttpResponse> => {
   return {
     statusCode: 204,
-    body: [],
+    body: null,
+  };
+};
+
+export const badRequest = async (): Promise<HttpResponse> => {
+  return {
+    body: null,
+    statusCode: 400,
+  };
+};
+
+export const created = async (): Promise<HttpResponse> => {
+  return {
+    statusCode: 201,
+    body: {
+      message: "successfull",
+    },
   };
 };
