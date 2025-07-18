@@ -1,11 +1,13 @@
 import {
   deleteOnePlayer,
   findAllPlayers,
+  findAndModifyPlayer,
   findPlayerById,
   insertPlayer,
 } from "../repositories/player-repository";
 import { ok, noContent, badRequest, created } from "../utils/http-helper";
 import { PlayerModel } from "../models/player-model";
+import { StatisticsModel } from "../models/statistics-model";
 
 export const getPlayerService = async () => {
   const data = await findAllPlayers();
@@ -39,5 +41,18 @@ export const createPlayerService = async (player: PlayerModel) => {
 export const deletePlayerService = async (id: number) => {
   await deleteOnePlayer(id);
 
-  return ok({ message: "Player deleted" });
+  return await ok({ message: "Player deleted" });
+};
+
+export const updatePlayerService = async (
+  id: number,
+  statistics: StatisticsModel
+) => {
+  const response = await findAndModifyPlayer(id, statistics);
+
+  if (response) {
+    return await ok(response);
+  }
+
+  return await noContent();
 };
