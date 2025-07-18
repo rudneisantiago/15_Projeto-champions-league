@@ -1,0 +1,16 @@
+import { ClubModel } from "../models/club-model";
+
+const database: ClubModel[] = [
+  { id: 1, name: "Real Madrid" },
+  { id: 2, name: "Paris Saint-Germain" },
+  { id: 3, name: "Manchester City" },
+  { id: 4, name: "Al Hilal" },
+  { id: 5, name: "Liverpool" },
+  { id: 6, name: "Bayern Munich" },
+  { id: 7, name: "FC Barcelona" },
+  { id: 8, name: "Al Nassr" },
+];
+
+export const findAllClubs = async (): Promise<ClubModel[]> => {
+  return database;
+};

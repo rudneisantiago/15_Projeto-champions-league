@@ -39,9 +39,13 @@ export const createPlayerService = async (player: PlayerModel) => {
 };
 
 export const deletePlayerService = async (id: number) => {
-  await deleteOnePlayer(id);
+  const response = await deleteOnePlayer(id);
 
-  return await ok({ message: "Player deleted" });
+  if (response) {
+    return await ok({ message: "Player deleted" });
+  }
+
+  return await badRequest();
 };
 
 export const updatePlayerService = async (
