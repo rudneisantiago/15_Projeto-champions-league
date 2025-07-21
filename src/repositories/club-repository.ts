@@ -1,4 +1,5 @@
 import { ClubModel } from "../models/club-model";
+import fs from "fs/promises";
 
 const database: ClubModel[] = [
   { id: 1, name: "Real Madrid" },
